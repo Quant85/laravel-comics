@@ -53,7 +53,13 @@
                   <td>{{optional($product->rated)->name}}</td>
                   <td>{{$product->price}}</td>
                   <td>{{$product->sale_date}}</td>
-                  <td><img src="{{$product->cover}}" alt="img cover"></td>
+                  <td>
+                    @if ($product->cover)
+                    <img src="{{asset( 'storage/'.$product->cover)}}" alt="img cover" style="width: 120px">                        
+                    @else
+                    <img src="{{asset( 'img/default/DC_placeholder_comic-active_573b3c29745fb7.57372980.jpg')}}" alt="img cover" style="width: 120px">                        
+                    @endif
+                  </td>
                   <td>{{optional($product->size)->size}}</td>
                   <td>{{$product->description}}</td>
                   <td>{{$product->page_count}}</td>

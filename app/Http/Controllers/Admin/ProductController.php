@@ -12,6 +12,7 @@ use App\Serie;
 use App\Size;
 use App\Talent;
 use GuzzleHttp\Handler\Proxy;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -70,9 +71,15 @@ class ProductController extends Controller
             'available'=>'required',
             ]);
 
-        //dd($validateDate);
+            if ($request->cover) {
+                # code...
+                $cover = Storage::put('cover_imgs', $request->cover);
+                $validateDate['cover'] = $cover;
+            }
 
-        Product::create($validateDate);
+            //dd($cover);
+            Product::create($validateDate);
+        
         $product = Product::orderBy('id','desc')->first();
         $product->talents()->attach($request->talents);
         return redirect('/admin/products')->with('success', 'Post saved!');
@@ -111,6 +118,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
     }
 
     /**
