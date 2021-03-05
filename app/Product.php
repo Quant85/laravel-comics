@@ -19,7 +19,8 @@ class Product extends Model
     'sold',
     'available',
     'sale_date',
-    'category_id',
+    'rated_id',
+    'size_id',
     'serie_id',
     'created_at'
     ] ;

@@ -77,7 +77,7 @@ class ProductController extends Controller
                 $validateDate['cover'] = $cover;
             }
 
-            //dd($cover);
+            //dd($validateDate);
             Product::create($validateDate);
         
         $product = Product::orderBy('id','desc')->first();
