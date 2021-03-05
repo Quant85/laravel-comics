@@ -8,9 +8,9 @@ class Credit extends Model
 {
     //
 
-    public function talents()
+    public function talent()
     {
         # code...
-        return $this->belongsToMany(Credit::class);
+        return $this->belongsToMany(Talent::class, 'talent_credit');
     }
 }

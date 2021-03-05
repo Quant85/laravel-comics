@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\Credit;
+use App\Rated;
+use App\Serie;
+use App\Size;
+use App\Talent;
 use GuzzleHttp\Handler\Proxy;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -19,7 +25,6 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-
         return view('admin.products.index', compact('products'));
     }
 
@@ -31,6 +36,11 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+        $rateds = Rated::all();
+        $series = Serie::all();
+        $sizes = Size::all();
+        return view('admin.products.create', compact('rateds','categories','series','sizes'));
     }
 
     /**
@@ -42,6 +52,31 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request->all());
+
+        $request ['slug'] = Str::slug($request->title);
+        $validateDate = $request->validate([
+            'title'=>'required',
+            'slug' => 'required',
+            'serie_id' => 'required',
+            'rated_id' => 'nullable',
+            'size_id' => 'nullable',
+            'volume' => 'required',
+            'cover' => 'nullable | mimes:jpeg,jpg,png,gif | max:500',
+            'description'=>'nullable',
+            'page_count'=>'nullable',
+            'price'=>'nullable',
+            'sale_date'=>'nullable',
+            'available'=>'required',
+            ]);
+
+        //dd($validateDate);
+
+        Product::create($validateDate);
+        $product = Product::orderBy('id','desc')->first();
+        $product->talents()->attach($request->talents);
+        return redirect('/admin/products')->with('success', 'Post saved!');
+
     }
 
     /**

@@ -18,6 +18,7 @@ class Product extends Model
     'slug',
     'sold',
     'available',
+    'sale_date',
     'category_id',
     'serie_id',
     'created_at'
@@ -50,9 +51,15 @@ class Product extends Model
         ]);
     }
 
+    public function size()
+    {
+        return $this->belongsTo(Size::class)->withDefault([
+            'size' => '6 5/8 x 10 3/16'
+        ]);
+    }
+
     public function talents()
     {
-        # code...
         return $this->belongsToMany(Talent::class);
     }
 }
