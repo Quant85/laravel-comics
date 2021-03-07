@@ -1,0 +1,47 @@
+header{
+  min-height: 620px;
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #1c1c1c;
+  margin: 3rem 0;
+  .header-menu{
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;   
+    .title-page{
+      color: #ffffff;
+      background-color: $primary_blue;
+      text-transform: uppercase;
+      font-family: $primary_font_family;
+      font-size: 2rem;
+      padding: 10px 30px 8px 30px;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      cursor: pointer;
+    }
+
+    .quicktabs-tabs{
+      color: $grey_text;
+      font-size: 1em;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      li{
+        margin: 0px 5px;
+        &:hover a {
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+      .active{
+        color: $primary_blue;
+      }
+    }
+
+  }
+}

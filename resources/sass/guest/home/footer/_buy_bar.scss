@@ -1,0 +1,32 @@
+.footer-top {
+  background-color: $primary_blue;
+  display: flex;
+  justify-content: center;
+  .buy-bar-menu{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1.25rem 0;
+    li{
+      min-width: 20%;
+      color: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      padding: 30px 10px;
+      text-transform: uppercase;
+      vertical-align: top;
+      white-space: normal;
+      &:hover a{
+        text-decoration: none;
+        color: #fff;
+      }
+      img{
+        width: 2.5rem;
+        height: 3.4375rem;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+}

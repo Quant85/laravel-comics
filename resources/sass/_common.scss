@@ -1,0 +1,50 @@
+/* Reset */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PT Sans", sans-serif;
+    background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a.show:hover {
+    color: $primary_blue;
+}
+
+.container {
+    max-width: 1280px;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}

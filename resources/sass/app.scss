@@ -1,8 +1,24 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
 // Variables
 @import 'variables';
 
+/* @import "node_modules/font-awesome/scss/font-awesome.scss"; */
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+/* Common */
+@import '_typography';
+@import '_common';
+
+/* Admin - scss */
+@import 'admin/product/comics/show';
+
+/* Guest scss */
+@import 'guest/home/navbar';
+@import 'guest/home/header/header';
+@import 'guest/home/header/carousel';
+@import 'guest/home/main/main';
+@import 'guest/home/main/main_series';
+@import 'guest/home/footer/footer';
+

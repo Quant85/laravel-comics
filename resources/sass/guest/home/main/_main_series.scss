@@ -1,0 +1,21 @@
+section.series{
+  background-color: #1c1c1c;
+  .container{
+    position: relative;
+    .series-title {
+      color: #ffffff;
+      background-color: $primary_blue;
+      text-transform: uppercase;
+      font-family: $primary_font_family;
+      font-size: 2rem;
+      padding: 10px 30px 8px 30px;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      cursor: pointer;
+    }
+  }
+}

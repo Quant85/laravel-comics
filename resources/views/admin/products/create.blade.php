@@ -30,9 +30,22 @@
           <div class="row">
             <div class="form-group col-3">    
                 <label for="volume" class="col-4col-form-label">Number Vol:</label>
-                <input type="number" class="form-control" name="volume" value="{{ old('volume') }}"/>
+                <input type="number" min="0" class="form-control" name="volume" value="{{ old('volume') }}"/>
             </div>
             @error('volume')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            <div class="form-group col-4">
+                <label for="categories">Categories: </label>
+              <select class="form-control" name="category_id" id="categories">
+                    <option value="null"> </option>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->type}}</option>
+                @endforeach
+              </select>
+            </div>
+            @error('categories')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
   
@@ -48,6 +61,17 @@
             @error('series')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+          </div>
+
+          <div class="row">
+            
+            <div class="form-group col-3">    
+                <label for="page_count">Number Pages:</label>
+                <input type="number" min="0" class="form-control" name="page_count" value="{{ old('page_count') }}"/>
+            </div>
+            @error('page_count')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
 
             <div class="form-group col-4">
                 <label for="rateds">Rated</label>
@@ -59,16 +83,6 @@
               </select>
             </div>
             @error('rateds')
-              <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="row">
-            <div class="form-group col-3">    
-                <label for="page_count">Number Pages:</label>
-                <input type="number" class="form-control" name="page_count" value="{{ old('page_count') }}"/>
-            </div>
-            @error('page_count')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
@@ -84,27 +98,26 @@
             @error('sizes')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+          </div>
 
-            
+          <div class="row">
+
             <div class="form-group col-4">    
                 <label for="price">U.S.Price:</label>
-                <input type="text" class="form-control" name="price" value="{{ old('price') }}"/>
+                <input type="number" min="1" step="0.01" class="form-control" name="price" value="{{ old('price') }}"/>
             </div>
             @error('price')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-          </div>
-
-          <div class="row">
-            <div class="form-group col-8">    
+            <div class="form-group col-6">    
                 <label for="sale_date">Sale Date:</label>
                 <input type="date" class="form-control" name="sale_date" value="{{ old('sale_date') }}"/>
             </div>
             @error('sale_date')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-  
+
             <div class="form-group col-2">
                 <label for="available">Available:</label>
                 <input type="checkbox" name="available" class="switch-input" value="1" {{ old('available') ? 'checked="checked"' : '' }}/>
@@ -112,8 +125,39 @@
             @error('available')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-
           </div>
+
+          <div class="row">
+              <div class="form-group col-6">
+                  @if(count($talents) > 0)
+                  <label for="talents">Writer</label>
+                  <select class="form-control" name="talents[]" id="talents" multiple>
+                    <option value="null" disabled> </option>
+                    @foreach ($talents as $talent)
+                        <option value="{{$talent->id}}">{{$talent->name}}</option>
+                    @endforeach
+                  </select>
+                  @endif
+                </div>
+              @error('tags')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+
+              <div class="form-group col-6">
+                  @if(count($talents) > 0)
+                  <label for="talents">Art</label>
+                  <select class="form-control" name="talents[]" id="talents" multiple>
+                    <option value="null" disabled> </option>
+                    @foreach ($talents as $talent)
+                        <option value="{{$talent->id}}">{{$talent->name}}</option>
+                    @endforeach
+                  </select>
+                  @endif
+                </div>
+              @error('tags')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+            </div>
 
 
           <div class="form-group">

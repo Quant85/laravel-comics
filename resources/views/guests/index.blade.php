@@ -5,7 +5,7 @@
 @endsection
 
 @section('navbar')
-  @include('guests.common.navbar')
+  @include('guests.home.navbar_top')
 @endsection
 
 @section('header')

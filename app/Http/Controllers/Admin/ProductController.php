@@ -41,7 +41,8 @@ class ProductController extends Controller
         $rateds = Rated::all();
         $series = Serie::all();
         $sizes = Size::all();
-        return view('admin.products.create', compact('rateds','categories','series','sizes'));
+        $talents = Talent::all();
+        return view('admin.products.create', compact('rateds','categories','series','sizes','talents'));
     }
 
     /**
@@ -59,6 +60,7 @@ class ProductController extends Controller
         $validateDate = $request->validate([
             'title'=>'required',
             'slug' => 'required',
+            'category_id' => 'required',
             'serie_id' => 'required',
             'rated_id' => 'nullable',
             'size_id' => 'nullable',
@@ -92,9 +94,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
         //
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -103,9 +106,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $products, Serie $series, Rated $rateds, Size $sizes, Talent $talents, Category $categories)
     {
         //
+        return view('admin.products.edit', compact('products','series','rateds','sizes','talents','categories'));
     }
 
     /**
@@ -115,9 +119,38 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         //
+        $request ['slug'] = Str::slug($request->title);
+        $validateDate = $request->validate([
+            'title'=>'required',
+            'slug' => 'required',
+            'category_id' => 'required',
+            'serie_id' => 'required',
+            'rated_id' => 'nullable',
+            'size_id' => 'nullable',
+            'volume' => 'required',
+            'cover' => 'nullable | mimes:jpeg,jpg,png,gif | max:500',
+            'description'=>'nullable',
+            'page_count'=>'nullable',
+            'price'=>'nullable',
+            'sale_date'=>'nullable',
+            'available'=>'required',
+            ]);
+
+            if ($request->cover) {
+                # code...
+                $cover = Storage::put('cover_imgs', $request->cover);
+                $validateDate['cover'] = $cover;
+            }
+
+            //dd($validateDate);
+            Product::create($validateDate);
+        
+        $product = Product::orderBy('id','desc')->first();
+        $product->talents()->attach($request->talents);
+        return redirect('/admin/products')->with('success', 'Post saved!');
         
     }
 

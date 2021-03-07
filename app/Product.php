@@ -20,6 +20,7 @@ class Product extends Model
     'available',
     'sale_date',
     'rated_id',
+    'category_id',
     'size_id',
     'serie_id',
     'created_at'

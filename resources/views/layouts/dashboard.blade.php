@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -37,7 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ url('/') }}">Comics <span class="sr-only">(current)</span></a>
                         </li>
                         {{-- <li class="nav-item active">
                             <a class="nav-link" href="{{ route('blog') }}">Blog <span class="sr-only">(current)</span></a>
@@ -89,12 +91,12 @@
             <div class="row">
                 <div class="col-xs-12 col-md-3 col-lg-2">
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('admin.index')}}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
-                        <li><a href="{{ route('admin.products.index')}}"><i class="fas fa-book-open"></i>Comics</a></li>
-                        <li><a href="#"><i class="fa fa-folder-open" aria-hidden="true"></i>Category</a></li>
-                        <li><a href="#"><i class="fas fa-tag fa-lg fa-fw"></i> Series</a>
+                        <li class="{{ Route::currentRouteName() == 'admin.index' ? 'active' : '' }}"><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                        <li class="{{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}"><a href=""><i class="fa fa-folder-open" aria-hidden="true"></i>Category</a></li>
+                        <li class="{{ Route::currentRouteName() == 'admin.products.index' ? 'active' : '' }}"><a href="{{ route('admin.products.index') }}"><i class="fas fa-book-open"></i>Comics</a></li>
+                        <li class="{{ Route::currentRouteName() == 'admin.series.index' ? 'active' : '' }}"><a href="{{ route('admin.series.index') }}"><i class="fas fa-tag fa-lg fa-fw"></i> Series</a>
                         </li>
-                        <li><a href="#"><i class="fas fa-tag fa-lg fa-fw"></i> Rated</a></li>
+                        <li class="{{ Route::currentRouteName() == 'admin.rateds.index' ? 'active' : '' }}"><a href="#"><i class="fas fa-tag fa-lg fa-fw"></i> Rated</a></li>
                     </ul>
                 </div>
                 <main class="py-4 col-xs-12 col-md-9 col-lg-10">

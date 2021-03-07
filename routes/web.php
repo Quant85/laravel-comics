@@ -21,10 +21,12 @@ Route::get('contacts', 'PageController@contacts')->name('contacts'); */
 
 Auth::routes();
 
+Route::resource('/', 'ComicController');
 //Route::get('/admin', 'Admin\HomeController@index')->name('admin');
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function () 
 {
     Route::get('/', 'HomeController@index')->name('index');
     Route::resource('products', 'ProductController');//voglio che faccia riferimento ad /admin/products
+    Route::resource('series', 'SerieController');
 });
