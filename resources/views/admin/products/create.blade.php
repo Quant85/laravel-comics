@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="row">
+<div class="row">
   <div class="col-sm-8 offset-sm-2">
     <h1 class="display-3">Add a Comics</h1>
   <div>
@@ -171,13 +171,13 @@
           <div class="form-group">
             <label for="cover">Cover</label>
             <input type="file" class="form-control-file" name="cover" id="cover" placeholder="Add a cover image" aria-describedby="coverHelper">
-            <small id="coverHelper" class="form-text text-muted">Add cover image for current post</small>
+            <small id="coverHelper" class="form-text text-muted">Add cover image for current comics</small>
           </div>
           @error('cover')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
 
-          <button type="submit" class="btn btn-outline-primary btn-block">Add Post</button>
+          <button type="submit" class="btn btn-outline-primary btn-block">Add Comics</button>
       </form>
   </div>
 </div>

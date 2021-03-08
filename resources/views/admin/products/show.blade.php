@@ -1,8 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('content')
-  <div class="container comics-show">
+  <div class="container comics-show" style="display: flex">
+    @if ($product->cover)
+      <img src="{{asset( 'storage/'.$product->cover)}}" alt="img cover" style="width: 120px;
+      height: 181px;
+      margin: 40px 20px;">                        
+      @else
+      <img src="{{asset( 'img/default/DC_placeholder_comic-active_573b3c29745fb7.57372980.jpg')}}" alt="img cover" style="width: 120px">                        
+    @endif
     <div class="info-comics">
+      <button type="button" class="btn btn-light btn-ms"> 
+        <a href="{{ route('admin.products.index') }}">Return Admin Panel</a> 
+      </button>
       <h1 class="comics-title-vol">{{$product->title}} #{{$product->volume}}</h1>
       <!-- /.comics-title-vol -->
       <div class="buy-section">
@@ -77,7 +87,7 @@
             <span class="span-left">U.S. Price: </span><samp class="span-right">{{$product->price}}</samp>
           </li>
           <li>
-            <span class="span-left">On Sale Date: </span><samp class="span-right">{{\Carbon\Carbon::parse($product->sale_date)->format('l m Y')}}</samp>
+            <span class="span-left">On Sale Date: </span><samp class="span-right">{{\Carbon\Carbon::parse($product->sale_date)->format('M d Y')}}</samp>
           </li>
           <li>
             <span class="span-left">Volume/Issue #:  </span><samp class="span-right">{{$product->volume}}</samp>

@@ -1,0 +1,61 @@
+.header-show{
+  min-height: 450px;
+  margin: 0;
+  background-color: transparent;
+  .cover-preview{
+    position: relative;
+    height: calc(450px - 78px);
+    .larger-cover{
+      left: 0px;
+      width: 100%;
+      position: fixed;
+      top: 0px;
+      z-index: -10;
+    }
+    .short-preview{
+      width: 1020px;
+      height: 100%;
+      position: relative;
+      bottom: 0;
+      .box-img{
+        position: absolute;
+        bottom: calc(15px - 78px);
+        border: 1px solid #fff;
+        .short-cover-preview{
+          position: relative;
+          width: 191px;
+        }
+        .tag-book {
+            width: max-content;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #ffffff;
+            background-color: $primary_blue;
+            font-size: 0.75rem;
+            padding: 6px;
+            margin: 0;
+            line-height: 0.65rem;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 10;
+            cursor: pointer;
+        }
+      }
+    }
+    .blue-break{
+      height: 78px;
+      background-color: $primary_blue;
+      margin: 0;
+    }
+  }
+}
+
+.comics-details>.container,
+.main-show>.container {
+  width: 1020px;
+  .comics-show{
+    margin: 0;
+  }
+}

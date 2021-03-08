@@ -7,7 +7,7 @@
         <h1 class="display-3">Admin Panel Comics</h1>  
 
         <div>
-          <a style="margin: 19px;" href="{{ route('admin.products.create')}}" class="btn btn-primary">New post</a>
+          <a style="margin: 19px;" href="{{ route('admin.products.create')}}" class="btn btn-primary">New Comics</a>
         </div>
         
         @foreach($products as $product)
@@ -27,7 +27,8 @@
                 <td>Descriptio</td>
                 <td>Page Count</td>
                 <td>Available</td>
-                <td colspan = 2>Talent</td>
+                <td>Art</td>
+                <td>Writer</td>
                 {{-- Many to Many talent_redit --}}
                     {{-- @if (count($product->talents) > 0 )
                       @foreach ($product->talents as $talent)
@@ -40,7 +41,7 @@
                       @else
                         N/a
                     @endif --}}
-                <td colspan = 2>Actions</td>
+                <td>Actions</td>
               </tr>
           </thead>
           <tbody>
@@ -60,8 +61,18 @@
                     <img src="{{asset( 'img/default/DC_placeholder_comic-active_573b3c29745fb7.57372980.jpg')}}" alt="img cover" style="width: 120px">                        
                     @endif
                   </td>
-                  <td>{{optional($product->size)->size}}</td>
-                  <td>{{$product->description}}</td>
+                  <td>
+                    <p style="width: 100px">{{optional($product->size)->size}}</p>
+                  </td>
+                  <td>
+                    <p style="
+                        font-size: 12px;
+                        height: 200px;
+                        width: 320px;
+                        overflow: auto;">
+                      {{$product->description}}
+                    </p>
+                    </td>
                   <td>{{$product->page_count}}</td>
                   <td>{{$product->available ? 'Available' :'Not Available'}}</td>
 
@@ -71,8 +82,7 @@
                       @foreach ($product->talents as $talent)
                         @foreach ($talent->credits as $credit)
                           @if ($credit->type == 'Art')
-                          <span class="talent"> {{$credit->type}} </span>                      
-                          <span class="talent"> {{$talent->name}} </span>                    
+                            <span class="talent"> {{$talent->name}} </span>                    
                           @endif
                         @endforeach
                       @endforeach
@@ -85,9 +95,8 @@
                     @if (count($product->talents) > 0 )
                       @foreach ($product->talents as $talent)
                         @foreach ($talent->credits as $credit)
-                          @if ($credit->type == 'Writer')
-                          <span class="talent"> {{$credit->type}} </span>                      
-                          <span class="talent"> {{$talent->name}} </span>                  
+                          @if ($credit->type == 'Writer')                      
+                            <span class="talent"> {{$talent->name}} </span>                  
                           @endif
                         @endforeach
                       @endforeach

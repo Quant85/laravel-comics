@@ -84,7 +84,7 @@ class ProductController extends Controller
         
         $product = Product::orderBy('id','desc')->first();
         $product->talents()->attach($request->talents);
-        return redirect('/admin/products')->with('success', 'Post saved!');
+        return redirect('/admin/products')->with('success', 'Comics saved!');
 
     }
 

@@ -21,7 +21,7 @@ Route::get('contacts', 'PageController@contacts')->name('contacts'); */
 
 Auth::routes();
 
-Route::resource('/', 'ComicController');
+Route::resource('comics', 'ComicController');
 //Route::get('/admin', 'Admin\HomeController@index')->name('admin');
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function () 

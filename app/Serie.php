@@ -12,12 +12,13 @@ class Serie extends Model
     'cover',
     'description',
     'total_vol',
-    'slug'
+    'slug',
+    'created_at',
+    'update_at'
     ];
 
     public function getRouteKeyName()
     {
-        # code...
         return 'slug';
     }
     public function products()

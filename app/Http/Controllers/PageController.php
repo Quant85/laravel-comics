@@ -10,6 +10,6 @@ class PageController extends Controller
     public function index()
     {
         # code...
-        return view('guests.index');
+        return view('home');
     }
 }

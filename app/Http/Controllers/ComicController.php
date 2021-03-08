@@ -26,7 +26,8 @@ class ComicController extends Controller
     {
         //
         $comics = Product::latest()->get();// mette in ordine
-        return view('guests.index', compact('comics'));
+        $series = Serie::all();
+        return view('guests.index', compact('comics','series'));
     }
 
     /**
@@ -56,9 +57,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $comic)
     {
         //
+        return view('guests.home.show.comics_show', compact('comic'));
     }
 
     /**

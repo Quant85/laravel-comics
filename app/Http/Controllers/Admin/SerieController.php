@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Serie;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class SerieController extends Controller
 {
     /**
@@ -25,9 +28,10 @@ class SerieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Serie $series)
     {
         //
+        return view('admin.series.create');
     }
 
     /**
@@ -39,6 +43,27 @@ class SerieController extends Controller
     public function store(Request $request)
     {
         //
+        $request ['slug'] = Str::slug($request->name);
+
+        $validateDate = $request->validate([
+            'name'=>'required',
+            'slug' => 'required',
+            'cover' => 'nullable | mimes:jpeg,jpg,png,gif | max:500',
+            'description'=>'nullable',
+            'total_vol' => 'nullable'
+            ]);
+
+            if ($request->cover) {
+
+                $cover = Storage::put('cover_series_imgs', $request->cover);
+                $validateDate['cover'] = $cover;
+            }
+
+            //dd($validateDate);
+            Serie::create($validateDate);
+        
+        $serie = Serie::orderBy('id','desc')->first();
+        return redirect('/admin/series')->with('success', 'Serie saved!');
     }
 
     /**
@@ -47,9 +72,10 @@ class SerieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Serie $serie)
     {
         //
+        return view('admin.series.show', compact('serie'));
     }
 
     /**
@@ -58,9 +84,10 @@ class SerieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Serie $series)
     {
         //
+        return view('admin.series.show', compact('series'));
     }
 
     /**
